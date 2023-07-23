@@ -567,8 +567,11 @@ class RegistrationHandler(BaseHandler):
 
         self.event_manager.push_score_update()
         # Chat
+        print('start to create user in chat')
         if self.chatsession:
+            print('try to create user in chat')
             self.chatsession.create_user(user, self.get_argument("pass1", ""))
+        print('finised user in chat')
 
         return user
 

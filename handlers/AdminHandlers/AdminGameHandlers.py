@@ -172,9 +172,14 @@ class AdminMessageHandler(BaseHandler):
     def post(self, *args, **kwargs):
         message = self.get_argument("message", "")
         if len(message) > 0:
+            print('send message: x001')
             self.event_manager.admin_message(message)
+            print('send message: x002')
             if self.chatsession:
+                print('send message: x003')
                 self.chatsession.post_message(message)
+                print('send message: x004')
+            print('send message: x005')
         self.redirect("/user")
 
 
