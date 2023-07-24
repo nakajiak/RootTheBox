@@ -172,14 +172,14 @@ class AdminMessageHandler(BaseHandler):
     def post(self, *args, **kwargs):
         message = self.get_argument("message", "")
         if len(message) > 0:
-            print('send message: x001')
+            logging.warning('send message: x001')
             self.event_manager.admin_message(message)
-            print('send message: x002')
+            logging.warning('send message: x002')
             if self.chatsession:
-                print('send message: x003')
+                logging.warning('send message: x003')
                 self.chatsession.post_message(message)
-                print('send message: x004')
-            print('send message: x005')
+                logging.warning('send message: x004')
+            logging.warning('send message: x005')
         self.redirect("/user")
 
 
@@ -522,7 +522,7 @@ class AdminGitStatusHandler(BaseHandler):
         Shutdown the actual process and restart the service.
         """
         pid = os.getpid()
-        print(INFO + "%s : Restarting the service (%i)..." % (self.current_time(), pid))
+        logging.warning(INFO + "%s : Restarting the service (%i)..." % (self.current_time(), pid))
         self.finish()
         os.execl("./setup/restart.sh", "./setup/restart.sh")
 
